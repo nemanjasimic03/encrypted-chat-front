@@ -117,16 +117,56 @@ function Chat({ socket, username, keyPair }) {
   return (
     <div
       className="chat-container"
-      style={{ maxWidth: 600, margin: "auto", padding: 20 }}
+      style={{
+        width: "100%",
+        maxWidth: 900,
+        margin: "auto",
+        padding: 20,
+        display: "flex",
+        flexDirection: "column",
+      }}
     >
-      <h2>Ulogovan kao: {username}</h2>
-<ul>
-  {users.map((user) => (
-    <li key={user.socketId}>
-      {user.username}
-    </li>
-  ))}
-</ul>
+      <h3>Welcome to Safe Line, {username}!</h3>
+      <div
+        style={{
+          display: "flex",
+          gap: 20,
+          flexWrap: "wrap",
+          marginBottom: 16,
+        }}
+      >
+        {users.map((user) => (
+          <div
+            key={user.socketId}
+            style={{
+              display: "flex",
+              fontSize: 14,
+              alignItems: "center",
+              background: "#e4e6eb",
+              borderRadius: 20,
+              padding: "6px 16px",
+              marginRight: 8,
+              boxShadow: user.username === username ? "0 0 18px #0dfd4191" : "none",
+              border: user.username === username ? "2px solid #0dfd19ff" : "1px solid #ccc",
+              fontWeight: user.username === username ? "bold" : "normal",
+              color: user.username === username ? "#1f1f1fff" : "#333",
+              transition: "0.2s",
+            }}
+          >
+            <span
+              style={{
+                display: "inline-block",
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "#28a745",
+                marginRight: 8,
+              }}
+            />
+            {user.username}
+          </div>
+        ))}
+      </div>
 
       <div
         style={{
@@ -151,7 +191,7 @@ function Chat({ socket, username, keyPair }) {
             <div
               style={{
                 display: "inline-block",
-                padding: "8px 12px",
+                padding: "8px 20px",
                 borderRadius: 15,
                 backgroundColor: msg.from === username ? "#0d6efd" : "#e4e6eb",
                 color: msg.from === username ? "white" : "black",
@@ -159,7 +199,7 @@ function Chat({ socket, username, keyPair }) {
                 wordBreak: "break-word",
               }}
             >
-              <div style={{ fontSize: 12, fontWeight: "bold" }}>{msg.from}</div>
+              <div style={{ fontSize: 12, fontWeight: "bold",marginBottom: 2 }}>{msg.from}</div>
               <div>{msg.text}</div>
               <div style={{ fontSize: 10, marginTop: 4, opacity: 0.7 }}>
                 {msg.timestamp}
@@ -203,6 +243,16 @@ function Chat({ socket, username, keyPair }) {
           Pošalji
         </button>
       </div>
+      <style>
+        {`
+          @media (max-width: 600px) {
+            .chat-container {
+              max-width: 98vw !important;
+              padding: 1vw !important;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 }
