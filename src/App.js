@@ -4,7 +4,7 @@ import Chat from "./Components/Chat";
 import io from "socket.io-client";
 import "./App.css"
 
-const socket = io("http://localhost:3001"); // prilagodi URL ako treba
+const socket = io(process.env.REACT_APP_SOCKET_URL); // prilagodi URL ako treba
 
 function App() {
   const [username, setUsername] = useState("");
@@ -39,7 +39,7 @@ function App() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <button onClick={handleLogin}>Pridruži se</button>
+            <button className="pridruzi-se" onClick={handleLogin}>Pridruži se</button>
           </div>
           <div className="info-box">
             <h3>Šta je E2E enkripcija?</h3>

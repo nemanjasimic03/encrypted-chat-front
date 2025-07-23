@@ -73,10 +73,11 @@ body {
   .login-form {
     flex-direction: column;
   }
-
-  .login-form input,
-  .login-form button {
-    width: 100%;
+.pridruzi-se{
+  width: 100%;
+}
+  .login-form input {
+    width: 90%;
   }
 }
 
